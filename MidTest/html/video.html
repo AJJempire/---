@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>视频播放器 - 综合移动应用</title>
+      <link rel="stylesheet" href="../CSS/style.css">
+      <link rel="stylesheet" href="../CSS/video.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <button class="back-button" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>视频播放器</h1>
+            <i class="fas fa-search"></i>
+        </div>
+        
+        <div class="content">
+            <div class="video-container">
+                <video id="main-video" class="video-player" controls poster="https://via.placeholder.com/450x250?text=Video+Thumbnail">
+                    <source src="#" type="video/mp4">
+                    您的浏览器不支持HTML5视频播放。
+                </video>
+            </div>
+            
+            <div class="card">
+                <h3 id="video-title">视频标题</h3>
+                <p id="video-description" style="color: #666; font-size: 0.9rem; margin-top: 5px;">视频描述信息将显示在这里...</p>
+                <div style="display: flex; margin-top: 10px; color: #666;">
+                    <div style="margin-right: 15px;">
+                        <i class="fas fa-eye"></i> <span>1.2万次观看</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-calendar-alt"></i> <span>2023-05-15</span>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="margin: 20px 0 10px;">推荐视频</h2>
+            <ul class="video-list">
+                <li class="video-item" data-title="自然风光纪录片" data-desc="探索大自然的奇妙景观和生态系统">
+                    <img class="video-thumbnail" src="https://via.placeholder.com/120x68?text=Nature" alt="视频缩略图">
+                    <div class="video-info">
+                        <div class="video-title">自然风光纪录片</div>
+                        <div class="video-duration">15:30</div>
+                    </div>
+                </li>
+                <li class="video-item" data-title="城市旅行指南" data-desc="探索世界各大城市的文化、美食和景点">
+                    <img class="video-thumbnail" src="https://via.placeholder.com/120x68?text=City" alt="视频缩略图">
+                    <div class="video-info">
+                        <div class="video-title">城市旅行指南</div>
+                        <div class="video-duration">12:45</div>
+                    </div>
+                </li>
+                <li class="video-item" data-title="烹饪教程：家常菜" data-desc="学习如何制作简单美味的家常菜肴">
+                    <img class="video-thumbnail" src="https://via.placeholder.com/120x68?text=Cooking" alt="视频缩略图">
+                    <div class="video-info">
+                        <div class="video-title">烹饪教程：家常菜</div>
+                        <div class="video-duration">8:20</div>
+                    </div>
+                </li>
+                <li class="video-item" data-title="健身训练指南" data-desc="在家就能完成的高效健身训练计划">
+                    <img class="video-thumbnail" src="https://via.placeholder.com/120x68?text=Fitness" alt="视频缩略图">
+                    <div class="video-info">
+                        <div class="video-title">健身训练指南</div>
+                        <div class="video-duration">20:15</div>
+                    </div>
+                </li>
+                <li class="video-item" data-title="科技产品评测" data-desc="最新科技产品的深度评测和使用体验分享">
+                    <img class="video-thumbnail" src="https://via.placeholder.com/120x68?text=Tech" alt="视频缩略图">
+                    <div class="video-info">
+                        <div class="video-title">科技产品评测</div>
+                        <div class="video-duration">10:30</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="music.html" class="nav-item">
+                <i class="fas fa-music"></i>
+                <span>音乐</span>
+            </a>
+            <a href="video.html" class="nav-item active">
+                <i class="fas fa-video"></i>
+                <span>视频</span>
+            </a>
+            <a href="walk-navigation.html" class="nav-item">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>导航</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 视频播放功能模拟
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoItems = document.querySelectorAll('.video-item');
+            const mainVideo = document.getElementById('main-video');
+            const videoTitle = document.getElementById('video-title');
+            const videoDescription = document.getElementById('video-description');
+            
+            // 点击视频列表项播放视频
+            videoItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.getAttribute('data-title');
+                    const desc = this.getAttribute('data-desc');
+                    const thumbnail = this.querySelector('.video-thumbnail').src;
+                    
+                    // 更新视频信息
+                    videoTitle.textContent = title;
+                    videoDescription.textContent = desc;
+                    mainVideo.poster = thumbnail;
+                    
+                    // 模拟视频加载
+                    mainVideo.pause();
+                    setTimeout(() => {
+                        // 实际应用中，这里应该设置真实的视频源
+                        // 由于这是演示，我们只是重置视频并开始播放
+                        mainVideo.currentTime = 0;
+                        mainVideo.play().catch(e => {
+                            console.log('自动播放被阻止，需要用户交互才能播放视频');
+                        });
+                    }, 500);
+                });
+            });
+            
+            // 默认选中第一个视频
+            if (videoItems.length > 0) {
+                videoItems[0].click();
+            }
+        });
+    </script>
+    <script src="../JS/video.js"></script>
+</body>
+</html>

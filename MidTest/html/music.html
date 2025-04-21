@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐盒子 - 综合移动应用</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/music.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <button class="back-button" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>音乐盒子</h1>
+            <i class="fas fa-search"></i>
+        </div>
+        
+        <div class="content">
+            <div class="music-player">
+                <div style="text-align: center;">
+                    <img id="current-cover" src="https://via.placeholder.com/300x300?text=Album+Cover" alt="专辑封面" style="width: 200px; height: 200px; border-radius: 8px; margin-bottom: 15px;">
+                    <h3 id="current-title" style="margin-bottom: 5px;">歌曲名称</h3>
+                    <p id="current-artist" style="color: #666; margin-bottom: 15px;">歌手名称</p>
+                    
+                    <div style="margin: 20px 0;">
+                        <input type="range" id="progress-bar" min="0" max="100" value="0" style="width: 100%;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #666;">
+                            <span id="current-time">0:00</span>
+                            <span id="total-time">3:30</span>
+                        </div>
+                    </div>
+                    
+                    <div class="player-controls">
+                        <button class="control-btn"><i class="fas fa-step-backward"></i></button>
+                        <button id="play-btn" class="control-btn" style="font-size: 2rem;"><i class="fas fa-play-circle"></i></button>
+                        <button class="control-btn"><i class="fas fa-step-forward"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="margin: 20px 0 10px;">推荐歌曲</h2>
+            <ul class="music-list">
+                <li class="music-item" data-title="夜曲" data-artist="周杰伦" data-duration="3:45">
+                    <img class="music-cover" src="https://via.placeholder.com/60x60?text=Jay" alt="专辑封面">
+                    <div class="music-info">
+                        <div class="music-title">夜曲</div>
+                        <div class="music-artist">周杰伦</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.8rem;">3:45</div>
+                </li>
+                <li class="music-item" data-title="起风了" data-artist="买辣椒也用券" data-duration="5:12">
+                    <img class="music-cover" src="https://via.placeholder.com/60x60?text=Wind" alt="专辑封面">
+                    <div class="music-info">
+                        <div class="music-title">起风了</div>
+                        <div class="music-artist">买辣椒也用券</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.8rem;">5:12</div>
+                </li>
+                <li class="music-item" data-title="光年之外" data-artist="邓紫棋" data-duration="4:18">
+                    <img class="music-cover" src="https://via.placeholder.com/60x60?text=G.E.M" alt="专辑封面">
+                    <div class="music-info">
+                        <div class="music-title">光年之外</div>
+                        <div class="music-artist">邓紫棋</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.8rem;">4:18</div>
+                </li>
+                <li class="music-item" data-title="孤勇者" data-artist="陈奕迅" data-duration="4:02">
+                    <img class="music-cover" src="https://via.placeholder.com/60x60?text=Eason" alt="专辑封面">
+                    <div class="music-info">
+                        <div class="music-title">孤勇者</div>
+                        <div class="music-artist">陈奕迅</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.8rem;">4:02</div>
+                </li>
+                <li class="music-item" data-title="稻香" data-artist="周杰伦" data-duration="3:42">
+                    <img class="music-cover" src="https://via.placeholder.com/60x60?text=Jay" alt="专辑封面">
+                    <div class="music-info">
+                        <div class="music-title">稻香</div>
+                        <div class="music-artist">周杰伦</div>
+                    </div>
+                    <div style="color: #666; font-size: 0.8rem;">3:42</div>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="music.html" class="nav-item active">
+                <i class="fas fa-music"></i>
+                <span>音乐</span>
+            </a>
+            <a href="video.html" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>视频</span>
+            </a>
+            <a href="walk-navigation.html" class="nav-item">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>导航</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // 音乐播放功能模拟
+        document.addEventListener('DOMContentLoaded', function() {
+            const playBtn = document.getElementById('play-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const currentTimeEl = document.getElementById('current-time');
+            const musicItems = document.querySelectorAll('.music-item');
+            const currentTitle = document.getElementById('current-title');
+            const currentArtist = document.getElementById('current-artist');
+            const currentCover = document.getElementById('current-cover');
+            
+            let isPlaying = false;
+            let progressInterval;
+            
+            // 播放/暂停按钮点击事件
+            playBtn.addEventListener('click', function() {
+                if (isPlaying) {
+                    // 暂停音乐
+                    playBtn.innerHTML = '<i class="fas fa-play-circle"></i>';
+                    clearInterval(progressInterval);
+                } else {
+                    // 播放音乐
+                    playBtn.innerHTML = '<i class="fas fa-pause-circle"></i>';
+                    
+                    // 模拟进度条更新
+                    progressInterval = setInterval(function() {
+                        let currentValue = parseInt(progressBar.value);
+                        if (currentValue < 100) {
+                            progressBar.value = currentValue + 1;
+                            
+                            // 更新当前时间显示
+                            const totalSeconds = 210; // 假设歌曲总时长为3:30
+                            const currentSeconds = Math.floor(totalSeconds * currentValue / 100);
+                            const minutes = Math.floor(currentSeconds / 60);
+                            const seconds = currentSeconds % 60;
+                            currentTimeEl.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                        } else {
+                            clearInterval(progressInterval);
+                            playBtn.innerHTML = '<i class="fas fa-play-circle"></i>';
+                            isPlaying = false;
+                            progressBar.value = 0;
+                            currentTimeEl.textContent = '0:00';
+                        }
+                    }, 210); // 假设歌曲长度为3:30，更新间隔为210ms
+                }
+                
+                isPlaying = !isPlaying;
+            });
+            
+            // 点击歌曲列表项播放歌曲
+            musicItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.getAttribute('data-title');
+                    const artist = this.getAttribute('data-artist');
+                    const cover = this.querySelector('.music-cover').src;
+                    
+                    // 更新当前播放信息
+                    currentTitle.textContent = title;
+                    currentArtist.textContent = artist;
+                    currentCover.src = cover;
+                    
+                    // 重置进度条
+                    progressBar.value = 0;
+                    currentTimeEl.textContent = '0:00';
+                    
+                    // 开始播放
+                    if (!isPlaying) {
+                        playBtn.click();
+                    } else {
+                        // 如果已经在播放，重置计时器
+                        clearInterval(progressInterval);
+                        playBtn.click();
+                        playBtn.click();
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="../JS/music.js"></script>
+</body>
+</html>

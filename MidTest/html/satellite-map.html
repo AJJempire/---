@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卫星地图 - 综合移动应用</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <button class="back-button" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>卫星地图</h1>
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+        
+        <div class="content">
+            <div class="form-group">
+                <div style="position: relative;">
+                    <input type="text" id="search-location" class="form-control" placeholder="搜索位置">
+                    <i class="fas fa-search" style="position: absolute; right: 10px; top: 12px; color: #666;"></i>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                <button class="btn" style="flex: 1;" id="standard-btn">标准</button>
+                <button class="btn" style="flex: 1; background-color: #3367d6;" id="satellite-btn">卫星</button>
+                <button class="btn" style="flex: 1;" id="terrain-btn">地形</button>
+            </div>
+            
+            <div class="map-container" id="map" style="height: 400px;">
+                <!-- 卫星地图将在这里显示 -->
+                <img src="https://via.placeholder.com/450x400?text=Satellite+Map" alt="卫星地图" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3 class="card-title">当前位置信息</h3>
+                <div style="margin-top: 10px;">
+                    <p><i class="fas fa-map-marker-alt" style="color: #4285f4; margin-right: 8px;"></i> 经度: 116.404, 纬度: 39.915</p>
+                    <p><i class="fas fa-info-circle" style="color: #4285f4; margin-right: 8px;"></i> 北京市东城区天安门广场</p>
+                    <p><i class="fas fa-eye" style="color: #4285f4; margin-right: 8px;"></i> 卫星图像更新时间: 2023-03-15</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <h3 style="margin-bottom: 10px;">附近地点</h3>
+                <div style="display: flex; overflow-x: auto; gap: 15px; padding-bottom: 10px;">
+                    <div class="card" style="min-width: 150px; margin-bottom: 5px;">
+                        <img src="https://via.placeholder.com/150x100?text=Place+1" alt="地点图片" style="width: 100%; border-radius: 4px; margin-bottom: 8px;">
+                        <div style="font-weight: bold;">故宫博物院</div>
+                        <div style="font-size: 0.8rem; color: #666;">1.2公里</div>
+                    </div>
+                    <div class="card" style="min-width: 150px; margin-bottom: 5px;">
+                        <img src="https://via.placeholder.com/150x100?text=Place+2" alt="地点图片" style="width: 100%; border-radius: 4px; margin-bottom: 8px;">
+                        <div style="font-weight: bold;">王府井商业街</div>
+                        <div style="font-size: 0.8rem; color: #666;">2.5公里</div>
+                    </div>
+                    <div class="card" style="min-width: 150px; margin-bottom: 5px;">
+                        <img src="https://via.placeholder.com/150x100?text=Place+3" alt="地点图片" style="width: 100%; border-radius: 4px; margin-bottom: 8px;">
+                        <div style="font-weight: bold;">天坛公园</div>
+                        <div style="font-size: 0.8rem; color: #666;">3.8公里</div>
+                    </div>
+                    <div class="card" style="min-width: 150px; margin-bottom: 5px;">
+                        <img src="https://via.placeholder.com/150x100?text=Place+4" alt="地点图片" style="width: 100%; border-radius: 4px; margin-bottom: 8px;">
+                        <div style="font-weight: bold;">北海公园</div>
+                        <div style="font-size: 0.8rem; color: #666;">2.1公里</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="music.html" class="nav-item">
+                <i class="fas fa-music"></i>
+                <span>音乐</span>
+            </a>
+            <a href="video.html" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>视频</span>
+            </a>
+            <a href="walk-navigation.html" class="nav-item active">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>导航</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const standardBtn = document.getElementById('standard-btn');
+            const satelliteBtn = document.getElementById('satellite-btn');
+            const terrainBtn = document.getElementById('terrain-btn');
+            const mapContainer = document.getElementById('map');
+            const searchInput = document.getElementById('search-location');
+            
+            // 地图类型切换
+            standardBtn.addEventListener('click', function() {
+                mapContainer.innerHTML = '<img src="https://via.placeholder.com/450x400?text=Standard+Map" alt="标准地图" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">';
+                standardBtn.style.backgroundColor = '#3367d6';
+                satelliteBtn.style.backgroundColor = '#4285f4';
+                terrainBtn.style.backgroundColor = '#4285f4';
+            });
+            
+            satelliteBtn.addEventListener('click', function() {
+                mapContainer.innerHTML = '<img src="https://via.placeholder.com/450x400?text=Satellite+Map" alt="卫星地图" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">';
+                satelliteBtn.style.backgroundColor = '#3367d6';
+                standardBtn.style.backgroundColor = '#4285f4';
+                terrainBtn.style.backgroundColor = '#4285f4';
+            });
+            
+            terrainBtn.addEventListener('click', function() {
+                mapContainer.innerHTML = '<img src="https://via.placeholder.com/450x400?text=Terrain+Map" alt="地形地图" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">';
+                terrainBtn.style.backgroundColor = '#3367d6';
+                standardBtn.style.backgroundColor = '#4285f4';
+                satelliteBtn.style.backgroundColor = '#4285f4';
+            });
+            
+            // 搜索功能
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const searchTerm = this.value.trim();
+                    if (searchTerm) {
+                        // 模拟搜索加载
+                        mapContainer.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #666;"><p>正在搜索: ' + searchTerm + '...</p></div>';
+                        
+                        setTimeout(() => {
+                            // 更新地图显示
+                            mapContainer.innerHTML = '<img src="https://via.placeholder.com/450x400?text=Search:+' + searchTerm + '" alt="搜索结果" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">';
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

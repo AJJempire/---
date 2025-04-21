@@ -1,0 +1,370 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 导航栏样式 */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4285f4;
+    color: white;
+    padding: 10px 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.navbar h1 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* 内容区域 */
+.content {
+    padding-top: 60px;
+    padding-bottom: 70px;
+}
+
+/* 底部导航 */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+.nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.nav-item.active {
+    color: #4285f4;
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    margin: 5px 0;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #3367d6;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* 表单样式 */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* 卡片样式 */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #4285f4;
+}
+
+/* 登录页面样式 */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.login-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 320px;
+}
+
+/* 主页功能图标 */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    color: #4285f4;
+    margin-bottom: 10px;
+}
+
+.feature-title {
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 音乐盒子样式 */
+.music-list {
+    list-style: none;
+}
+
+.music-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.music-cover {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.music-info {
+    flex: 1;
+}
+
+.music-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.music-artist {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.music-player {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #4285f4;
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+/* 视频播放器样式 */
+.video-container {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-player {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.video-list {
+    list-style: none;
+}
+
+.video-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.video-thumbnail {
+    width: 120px;
+    height: 68px;
+    border-radius: 4px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.video-info {
+    flex: 1;
+}
+
+.video-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.video-duration {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* 地图和导航样式 */
+.map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #e9e9e9;
+}
+
+.navigation-form {
+    margin-bottom: 20px;
+}
+
+.route-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.route-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.route-time {
+    font-weight: bold;
+    color: #4285f4;
+}
+
+.route-distance {
+    color: #666;
+}
+
+.route-steps {
+    list-style: none;
+}
+
+.route-step {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.step-icon {
+    margin-right: 15px;
+    color: #4285f4;
+    font-size: 1.2rem;
+}
+
+.step-info {
+    flex: 1;
+}
+
+.step-instruction {
+    margin-bottom: 5px;
+}
+
+.step-distance {
+    font-size: 0.8rem;
+    color: #666;
+}

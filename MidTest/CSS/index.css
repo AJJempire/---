@@ -1,0 +1,17 @@
+/* 主页独立样式 */
+body {
+    background: url('../img/back_2.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.container {
+    background: rgba(255,255,255,0.92);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+.feature-grid {
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    padding: 10px 0;
+}

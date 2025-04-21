@@ -1,0 +1,21 @@
+/* 登录页面独立样式 */
+body {
+    background: url('../img/back_1.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.login-container {
+    background: rgba(255,255,255,0.85);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 40px 30px 30px 30px;
+    margin-top: 60px;
+}
+.login-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+}
+.login-form {
+    width: 100%;
+    max-width: 320px;
+}

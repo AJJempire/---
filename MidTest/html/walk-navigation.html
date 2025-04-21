@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>步行导航 - 综合移动应用</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <button class="back-button" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1>步行导航</h1>
+            <i class="fas fa-ellipsis-v"></i>
+        </div>
+        
+        <div class="content">
+            <div class="navigation-form">
+                <div class="form-group">
+                    <input type="text" id="start-location" class="form-control" placeholder="起点位置" value="当前位置">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="end-location" class="form-control" placeholder="终点位置">
+                </div>
+                <button id="search-route" class="btn btn-block">规划路线</button>
+            </div>
+            
+            <div class="map-container" id="map">
+                <!-- 地图将在这里显示 -->
+                <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #666;">
+                    <p>地图加载中...</p>
+                </div>
+            </div>
+            
+            <div class="route-info" id="route-info" style="display: none;">
+                <div class="route-header">
+                    <div class="route-time">步行 35 分钟</div>
+                    <div class="route-distance">2.8 公里</div>
+                </div>
+                
+                <ul class="route-steps">
+                    <li class="route-step">
+                        <div class="step-icon"><i class="fas fa-walking"></i></div>
+                        <div class="step-info">
+                            <div class="step-instruction">沿着人民路向东步行</div>
+                            <div class="step-distance">450 米</div>
+                        </div>
+                    </li>
+                    <li class="route-step">
+                        <div class="step-icon"><i class="fas fa-turn-up"></i></div>
+                        <div class="step-info">
+                            <div class="step-instruction">在十字路口右转进入解放大道</div>
+                            <div class="step-distance">1.2 公里</div>
+                        </div>
+                    </li>
+                    <li class="route-step">
+                        <div class="step-icon"><i class="fas fa-turn-down"></i></div>
+                        <div class="step-info">
+                            <div class="step-instruction">在红绿灯处左转进入和平路</div>
+                            <div class="step-distance">850 米</div>
+                        </div>
+                    </li>
+                    <li class="route-step">
+                        <div class="step-icon"><i class="fas fa-flag-checkered"></i></div>
+                        <div class="step-info">
+                            <div class="step-instruction">到达目的地：中心广场</div>
+                            <div class="step-distance">300 米</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="music.html" class="nav-item">
+                <i class="fas fa-music"></i>
+                <span>音乐</span>
+            </a>
+            <a href="video.html" class="nav-item">
+                <i class="fas fa-video"></i>
+                <span>视频</span>
+            </a>
+            <a href="walk-navigation.html" class="nav-item active">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>导航</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchRouteBtn = document.getElementById('search-route');
+            const routeInfo = document.getElementById('route-info');
+            const mapContainer = document.getElementById('map');
+            const endLocationInput = document.getElementById('end-location');
+            
+            // 模拟地图加载
+            setTimeout(() => {
+                mapContainer.innerHTML = '<img src="https://via.placeholder.com/450x300?text=Map+View" alt="地图视图" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">';
+            }, 1000);
+            
+            // 搜索路线按钮点击事件
+            searchRouteBtn.addEventListener('click', function() {
+                const endLocation = endLocationInput.value.trim();
+                
+                if (!endLocation) {
+                    alert('请输入终点位置');
+                    return;
+                }
+                
+                // 模拟路线搜索
+                mapContainer.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #666;"><p>正在规划路线...</p></div>';
+                
+                setTimeout(() => {
+                    // 更新地图显示
+                    mapContainer.innerHTML = '<img src="https://via.placeholder.com/450x300?text=Route+Map" alt="路线地图" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">';
+                    
+                    // 显示路线信息
+                    routeInfo.style.display = 'block';
+                    
+                    // 滚动到路线信息
+                    routeInfo.scrollIntoView({ behavior: 'smooth' });
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>

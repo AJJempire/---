@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 综合移动应用</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <img src="../img/logo.png" alt="应用Logo" class="login-logo" onerror="this.src='https://via.placeholder.com/120x120?text=App+Logo'">
+            <h1 style="margin-bottom: 30px; color: #4285f4;">综合移动应用</h1>
+            
+            <form class="login-form" action="index.html" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="用户名" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="密码" required>
+                </div>
+                <button type="submit" class="btn btn-block">登录</button>
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="#" style="color: #4285f4; text-decoration: none; font-size: 0.9rem;">忘记密码?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../JS/login.js"></script>
+</body>
+</html>
